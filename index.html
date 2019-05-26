@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <body>
         <h3>Search By:</h3>
@@ -57,6 +58,12 @@
                 <option value="WV">West Virginia</option>
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
+                <option value="AS">American Samoa</option>
+                <option value="GU">Guam</option>
+                <option value="MP">Northern Mariana Islands</option>
+                <option value="PR">Puerto Rico</option>
+                <option value="UM">United States Minor Outlying Islands</option>
+                <option value="VI">Virgin Islands</option>
             </select>
             <br>
             Designation:
@@ -66,16 +73,16 @@
                 <option value="National Battlefield">National Battlefield</option>
                 <option value="National Battlefield Park">National Battlefield Park</option>
                 <option value="National Battlefield Site">National Battlefield Site</option>
-                <option value="National Military Park">National Military Park</option>
                 <option value="National Historical Park">National Historical Park</option>
                 <option value="National Historic Site">National Historic Site</option>
                 <option value="International Historic Site">International Historic Site</option>
                 <option value="National Lakeshore">National Lakeshore</option>
                 <option value="National Memorial">National Memorial</option>
+                <option value="National Military Park">National Military Park</option>
                 <option value="National Monument">National Monument</option>
                 <option value="National Park">National Park</option>
                 <option value="National Parkway">National Parkway</option>
-                <option value="National Preserve">National Preserve</option>
+                <option value="Preserve">National Preserve</option>
                 <option value="National Reserve">National Reserve</option>
                 <option value="National Recreation Area">National Recreation Area</option>
                 <option value="River">National River</option>
@@ -84,15 +91,15 @@
                 <option value="other">Other</option>
             </select>
         </form>
-        <button onclick="getData()">Show Info</button>
+        <button onclick="processFields()">Show Info</button>
         <div id="info">
             <p></p>
         </div>
-        <button id="back" onclick="previousPage()">Previous</button>
-        <button id="forward" onclick="nextPage()">Next</button>
+        <button id="back" style="display:none" onclick="previousPage()">Previous</button>
         <div id="pgCounter">
             <p></p>
         </div>
+        <button id="forward" style="display:none" onclick="nextPage()">Next</button>
     </body>
     <script src="main.js"></script>
 </html>

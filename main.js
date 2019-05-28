@@ -1,8 +1,7 @@
-let NPSDesigs = [];
-let filteredData = [];
-let currentPage = 0;
 let requestURL = "https://developer.nps.gov/api/v1/parks?";
 let apiKey = "api_key=wkSxIB6zEvqQeML5MiJwyulZzR0gegiZKOcmwxNc";
+let filteredData = [];
+let currentPage = 0;
 let limit = 50;
 let totalPages = 1;
 
@@ -10,32 +9,34 @@ function processFields()
 {
     let state = document.getElementById("state").value;
     let desig = document.getElementById("desig").value;
-    if (state == "" && desig == "")
+    let keyword = document.getElementById("keyword").value;
+    if (state == "all" && desig == "all" && keyword == "")
     {
         window.alert("Please enter at least one search criteria.")
     }else{
-        getData();
+        getData(state, desig, keyword);
     }
 }
 
-function getData() // Initial API Request
+function getData(state, desig, keyword) // Initial API Request
 {
     currentPage = 0; //Reset page numbers
     document.getElementById("back").style.display = "none"; //Hides previous button
     document.getElementById("forward").style.display = "none"; //Hides mext button
 
     requestURL = "https://developer.nps.gov/api/v1/parks?"; //reset base URL for each new call
-    let state = document.getElementById("state").value;
-    if (state != "") //Filters by state if a state filter is selected
+    if (state != "all") //Filters by state if a state filter is selected
     {
         requestURL += "stateCode=" + state + "&";
     }
-    let desig = document.getElementById("desig").value;
-    if (desig != "" && desig != "other")
+    if (keyword == "" && desig != "all" && desig != "") // Prioritizes keyword over designation for "Term to search" API call
     {
         requestURL += "q=" + desig + "&";
     }
-    //requestURL += apiKey;
+    else if (keyword != "")
+    {
+        requestURL += "q=" + keyword + "&";
+    }
 
     let request = new XMLHttpRequest();
     console.log("got URL");
@@ -49,7 +50,7 @@ function getData() // Initial API Request
         let data = request.response;
         totalPages = Math.ceil(request.response['total']/limit); // totalPages is set to the number of requests needed to get all the data
         console.log(totalPages);
-        if (desig != "")
+        if (desig != "all")
         {
             designationFilter(desig, data.data);
         }else{
@@ -68,32 +69,22 @@ function getData() // Initial API Request
 function designationFilter(desig, data)
 {
     console.log("Called designationFilter()");
-    if (desig == "other")
+    for (let entry of data)
     {
-        designationFilterOther(data);
-    }else{
-        for (let entry of data)
+        if (entry.designation == desig && entry.description != "")
         {
-            if (entry.designation.includes(desig))
-            {
-                filteredData.push(entry);
-            }
-        }
-        currentPage++;
-        if (currentPage < totalPages){
-            console.log("Making another API call.");
-            desigRequest(desig);
-        }else{
-            currentPage = 0;
-            totalPages = 1;
-            populateData(filteredData);
+            filteredData.push(entry);
         }
     }
-}
-
-function designationFilterOther(data)
-{
-
+    currentPage++;
+    if (currentPage < totalPages){
+        console.log("Making another API call.");
+        desigRequest(desig);
+    }else{
+        currentPage = 0;
+        totalPages = 1;
+        populateData(filteredData);
+    }
 }
 
 function desigRequest(desig) //Requests more results for designation filter
@@ -170,6 +161,11 @@ function populateData(data) // Displays data from the current API Request
         paraData.appendChild(document.createElement("br"));
         
     }
+    if (data.length == 0)
+    {
+        paraData.appendChild(document.createTextNode("No data returned."));
+    }
+
     pageNum.appendChild(document.createTextNode("Page " + (currentPage + 1) + " of " + totalPages));
     pageNumDiv.replaceChild(pageNum, pageNumDiv.children[0]);
     section.replaceChild(paraData, section.children[0]);

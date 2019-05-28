@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <body>
+    <body> 
         <h3>Search By:</h3>
         <form>
             State:
             <br>
             <select id="state">
-                <option value=""></option>
+                <option value="all"></option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -69,27 +69,67 @@
             Designation:
             <br>
             <select id=desig>
-                <option value=""></option>
+                <option value="all"></option>
+                <option value="Affiliated Area">Affiliated Area</option>
+                <option value="Cultural Heritage Corridor">Cultural Heritage Corridor</option>
+                <option value="Ecological &amp; Historic Preserve">Ecological &amp; Historic Preserve</option>
+                <option value="Heritage Area">Heritage Area</option>
+                <option value="International Historic Site">International Historic Site</option>
+                <option value="International Park">International Park</option>
+                <option value="Memorial">Memorial</option>
+                <option value="Memorial Parkway">Memorial Parkway</option>
                 <option value="National Battlefield">National Battlefield</option>
                 <option value="National Battlefield Park">National Battlefield Park</option>
                 <option value="National Battlefield Site">National Battlefield Site</option>
-                <option value="National Historical Park">National Historical Park</option>
+                <option value="National Geologic Trail">National Geologic Trail</option>
+                <option value="National Heritage Area">National Heritage Area</option>
+                <option value="National Heritage Corridor">National Heritage Corridor</option>
+                <option value="National Heritage Partnership">National Heritage Partnership</option>
+                <option value="National Historic Area">National Historic Area</option>
+                <option value="National Historic District">National Historic District</option>
                 <option value="National Historic Site">National Historic Site</option>
-                <option value="International Historic Site">International Historic Site</option>
+                <option value="National Historic Trail">National Historic Trail</option>
+                <option value="National Historical Park">National Historical Park</option>
+                <option value="National Historical Park and Ecological Preserve">National Historical Park and Ecological Preserve</option>
+                <option value="National Historical Park and Preserve">National Historical Park and Preserve</option>
+                <option value="National Historical Reserve">National Historical Reserve</option>
                 <option value="National Lakeshore">National Lakeshore</option>
                 <option value="National Memorial">National Memorial</option>
                 <option value="National Military Park">National Military Park</option>
                 <option value="National Monument">National Monument</option>
+                <option value="National Monument &amp; Preserve">National Monument &amp; Preserve</option>
+                <option value="National Monument and Historic Shrine">National Monument and Historic Shrine</option>
+                <option value="National Monument of America">National Monument of America</option>
                 <option value="National Park">National Park</option>
-                <option value="National Parkway">National Parkway</option>
-                <option value="Preserve">National Preserve</option>
-                <option value="National Reserve">National Reserve</option>
+                <option value="National Park &amp; Preserve">National Park &amp; Preserve</option>
+                <option value="National Parks">National Parks</option>
+                <option value="National Preserve">National Preserve</option>
                 <option value="National Recreation Area">National Recreation Area</option>
-                <option value="River">National River</option>
-                <option value="Trail">National Trail</option>
+                <option value="National Recreational River">National Recreational River</option>
+                <option value="National Reserve">National Reserve</option>
+                <option value="National River">National River</option>
+                <option value="National River &amp; Recreation Area">National River &amp; Recreation Area</option>
+                <option value="National River and Recreation Area">National River and Recreation Area</option>
+                <option value="National Scenic River">National Scenic River</option>
+                <option value="National Scenic Riverway">National Scenic Riverway</option>
+                <option value="National Scenic Riverways">National Scenic Riverways</option>
+                <option value="National Scenic Trail">National Scenic Trail</option>
                 <option value="National Seashore">National Seashore</option>
-                <option value="other">Other</option>
+                <option value="National Wild and Scenic River">National Wild and Scenic River</option>
+                <option value="National and State Parks">National and State Parks</option>
+                <option value="Park">Park</option>
+                <option value="Parkway">Parkway</option>
+                <option value="Part of Colonial National Historical Park">Part of Colonial National Historical Park</option>
+                <option value="Part of Statue of Liberty National Monument">Part of Statue of Liberty National Monument</option>
+                <option value="Scenic &amp; Recreational River">Scenic &amp; Recreational River</option>
+                <option value="Wild &amp; Scenic River">Wild &amp; Scenic River</option>
+                <option value="Wild River">Wild River</option>
+                <option value="">Other</option>
             </select>
+            <br>
+            Keyword:
+            <br>
+            <input id="keyword">
         </form>
         <button onclick="processFields()">Show Info</button>
         <div id="info">

@@ -5,7 +5,7 @@ let currentPage = 0;
 let limit = 50;
 let totalPages = 1;
 
-function processFields()
+function processFields() // Ensures at least one search criteria is selected before proceeding
 {
     let state = document.getElementById("state").value;
     let desig = document.getElementById("desig").value;
@@ -31,16 +31,14 @@ function getData(state, desig, keyword) // Initial API Request
     }
     if (keyword == "" && desig != "all" && desig != "") // Prioritizes keyword over designation for "Term to search" API call
     {
-        requestURL += "q=" + desig + "&";
+        requestURL += "q=" + desig + "&"; // We use this to decrease the number of results to iterate over for designation filtering
     }
-    else if (keyword != "")
+    else if (keyword != "") // Filters by keyword
     {
         requestURL += "q=" + keyword + "&";
     }
 
     let request = new XMLHttpRequest();
-    console.log("got URL");
-    console.log(requestURL + apiKey);
     request.open('GET', requestURL + apiKey);
     request.responseType = 'json';
     request.send();
@@ -50,7 +48,7 @@ function getData(state, desig, keyword) // Initial API Request
         let data = request.response;
         totalPages = Math.ceil(request.response['total']/limit); // totalPages is set to the number of requests needed to get all the data
         console.log(totalPages);
-        if (desig != "all")
+        if (desig != "all") // Use iterative designation filtering
         {
             designationFilter(desig, data.data);
         }else{
@@ -60,7 +58,7 @@ function getData(state, desig, keyword) // Initial API Request
             }else{
                 document.getElementById("forward").style.display = "inline";
             }
-            populateData(data.data)
+            populateData(data.data) // Sends just the park data
         }
     }
     
@@ -149,25 +147,52 @@ function changePage() //Gets an iteration of the current API request based on th
 function populateData(data) // Displays data from the current API Request
 {
     let section = document.getElementById("info");
-    let paraData = document.createElement("p");
+    let parks = document.createElement("div");
+    parks.setAttribute("class", "park_list");
+
     let pageNumDiv = document.getElementById("pgCounter");
     let pageNum = document.createElement("p");
-    let desig = document.getElementById("desig").value;
 
     for (let i = 0; i < data.length; i++)
     {
         let entry = data[i];
-        paraData.appendChild(document.createTextNode(entry['fullName']));
-        paraData.appendChild(document.createElement("br"));
+
+        if (entry.description != "") // Make sure valid park
+        {
+            let parkData = document.getElementById("model_node").cloneNode(true);
+            parkData.setAttribute("style", "");
+            let name = document.createElement("h3");
+            parkData.children[0].children[0].appendChild(document.createTextNode(entry.fullName));
+            let states = document.createElement("h6");
+            parkData.children[1].children[0].appendChild(document.createTextNode(entry.states));
+            let desc = document.createElement("p");
+            parkData.children[2].children[0].appendChild(document.createTextNode(entry.description));
+            //parkData.children[3].appendChild(document.createTextNode(entry.parkCode));
+            parkData.setAttribute("value", entry.parkCode);
+            /** 
+            parkData.appendChild(name);
+            parkData.appendChild(states);
+            parkData.appendChild(desc);*/
+
+            parks.appendChild(parkData);
+        }
         
     }
     if (data.length == 0)
     {
-        paraData.appendChild(document.createTextNode("No data returned."));
+        parks.appendChild(document.createTextNode("No data returned."));
     }
 
     pageNum.appendChild(document.createTextNode("Page " + (currentPage + 1) + " of " + totalPages));
     pageNumDiv.replaceChild(pageNum, pageNumDiv.children[0]);
-    section.replaceChild(paraData, section.children[0]);
+    section.replaceChild(parks, section.children[0]);
     filteredData = [];
+}
+
+function getPark(parkNode)
+{
+    console.log("Clicked!");
+    let parkCode = parkNode.getAttribute("value");
+    sessionStorage["parkCode"] = parkCode;
+    window.location = "park.html";
 }

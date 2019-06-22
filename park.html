@@ -5,18 +5,45 @@
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
         <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
         <script src="park.js"></script>
+        <script src="jquery-3.4.1.js"></script>
     </head>
     <div class="header"><a href="index.html" class="header-text">National Park Service Kiosk</a></div>
     <body>
+        <div class="lds-dual-ring" id="parkspinner"></div>
         <div id="title">
 
         </div>
-        <div id="row1">
+        <div class="row">
             <div id="parkIntro">
 
             </div>
             <div id="parkImages">
                 
+            </div>
+        </div>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'visitorCenters')">Visitor Centers</button>
+            <button class="tablinks" onclick="openTab(event, 'campgrounds')">Campgrounds</button>
+            <button class="tablinks" onclick="openTab(event, 'alerts')">Alerts</button>
+            <button class="tablinks" onclick="openTab(event, 'articles')">Articles</button>
+        </div>
+        <div class="row">
+            <div id="parkInfo">
+                <div id="visitorCenters" class="tabcontent">
+                    <h4>Visitor Centers</h4>
+                </div>
+                <div id="campgrounds" class="tabcontent">
+                    <h4>Campgrounds</h4>
+                </div>
+                <div id="alerts" class="tabcontent">
+                    <h4>Alerts</h4>
+                </div>
+                <div id="articles" class="tabcontent">
+                    <h4>Articles</h4>
+                </div>
+            </div>
+            <div id="parkMap">
+
             </div>
         </div>
     </body>

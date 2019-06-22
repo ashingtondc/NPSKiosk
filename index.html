@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow-y: scroll">
     <head>
         <title>NPS Kiosk</title>
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
         <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
         <script src="main.js"></script>
         <!--This is a model div to be copied-->
-        <div class="park_node" id="model_node" style="display:none" value="" onclick="getPark(this)">
+        <div id="model_node" style="display:none" value="" onclick="getPark(this)">
             <div class="park_name">
                 <h3></h3>
             </div>
@@ -155,8 +155,9 @@
             </form>
             <button onclick="processFields()">Show Info</button>
         </div>
+        <div class="lds-dual-ring" id="parkspinner" style="display: none"></div>
         <div id="info">
-            <div class="park_list">
+            <div id="park_list">
                 
             </div>
         </div>

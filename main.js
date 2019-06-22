@@ -4,9 +4,15 @@ let filteredData = [];
 let currentPage = 0;
 let limit = 50;
 let totalPages = 1;
+let spinner;
+window.onload = function(){
+    spinner = document.getElementById("parkspinner");
+}
 
 function processFields() // Ensures at least one search criteria is selected before proceeding
 {
+    //spinner.setAttribute("style", "display: block");
+    spinner.style.display = "block";
     let state = document.getElementById("state").value;
     let desig = document.getElementById("desig").value;
     let keyword = document.getElementById("keyword").value;
@@ -20,6 +26,11 @@ function processFields() // Ensures at least one search criteria is selected bef
 
 function getData(state, desig, keyword) // Initial API Request
 {
+    let parks = document.getElementById("park_list");
+    while (parks.firstChild)
+    {
+        parks.removeChild(parks.firstChild);
+    }
     currentPage = 0; //Reset page numbers
     document.getElementById("back").style.display = "none"; //Hides previous button
     document.getElementById("forward").style.display = "none"; //Hides mext button
@@ -45,6 +56,7 @@ function getData(state, desig, keyword) // Initial API Request
 
     request.onload = function() {
         console.log("Loaded");
+        spinner.style.display = "none";
         let data = request.response;
         totalPages = Math.ceil(request.response['total']/limit); // totalPages is set to the number of requests needed to get all the data
         console.log(totalPages);
@@ -147,8 +159,9 @@ function changePage() //Gets an iteration of the current API request based on th
 function populateData(data) // Displays data from the current API Request
 {
     let section = document.getElementById("info");
-    let parks = document.createElement("div");
-    parks.setAttribute("class", "park_list");
+    //let parks = document.createElement("div");
+    //parks.setAttribute("class", "park_list");
+    let parks = document.getElementById("park_list");
 
     let pageNumDiv = document.getElementById("pgCounter");
     let pageNum = document.createElement("p");
@@ -160,6 +173,7 @@ function populateData(data) // Displays data from the current API Request
         if (entry.description != "") // Make sure valid park
         {
             let parkData = document.getElementById("model_node").cloneNode(true);
+            parkData.setAttribute("class", "park_node");
             parkData.setAttribute("style", "");
             let name = document.createElement("h3");
             parkData.children[0].children[0].appendChild(document.createTextNode(entry.fullName));
@@ -183,9 +197,7 @@ function populateData(data) // Displays data from the current API Request
         parks.appendChild(document.createTextNode("No data returned."));
     }
 
-    pageNum.appendChild(document.createTextNode("Page " + (currentPage + 1) + " of " + totalPages));
-    pageNumDiv.replaceChild(pageNum, pageNumDiv.children[0]);
-    section.replaceChild(parks, section.children[0]);
+    //section.replaceChild(parks, section.children[0]);
     filteredData = [];
 }
 

@@ -19,8 +19,8 @@ p {
     margin-bottom: 15px;
 }
 
-h2 {
-    padding: 15px;
+#title h2 {
+    padding-left: 15px;
     font-family: 'Trebuchet MS';
 }
 
@@ -38,7 +38,7 @@ h4 {
     padding-bottom: 10px;
 }
 
-.article-info button {
+.article-info button, .news-info button, .people-info button, .places-info button, .lesson-info button {
     font-family: 'Arial';
     font-weight: bold;
     background-color: white;
@@ -51,14 +51,15 @@ h4 {
     display: inline-block;
     text-decoration: none;
     height: 50px;
-    width: 100px;
+    width: 150px;
     transition: 0.5s;
 }
-.article-info button:hover {
+.article-info button:hover, .news-info button:hover, .people-info button:hover, .places-info button:hover, .lesson-info button:hover {
     background-color: black;
     color: white;
     border-color: black;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 button:focus {
@@ -141,7 +142,7 @@ a:hover {
 
 }
 
-.article-row {
+.article-row, .event-row, .news-row, .people-row, .places-row, .lesson-row {
     display: flex;
     flex-direction: row;
     border-top: 3px;
@@ -154,23 +155,23 @@ a:hover {
     padding-bottom: 15px;
 }
 
-.article-info {
+.article-info, .event-info, .news-info, .people-info, .places-info, .lesson-info {
     display: flex;
     flex-direction: column;
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 30px;
-    max-width: 50%;
+    width: 50%;
 }
 
-.article-image {
+.article-image, .event-image, .news-image, .people-image, .places-image, .lesson-standards {
     display: flex;
     flex-direction: column;
     max-width: 50%;
     float: right;
 }
 
-.article-image img {
+.article-image img, .event-image img, .news-image img, .people-image img, .places-image img {
     width:  auto;
     max-height: 300px;
     margin: 0%;

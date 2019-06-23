@@ -20,13 +20,12 @@
         </div>
     </head>
     <div class="header"><a href="index.html" class="header-text">National Park Service Kiosk</a></div>
-    <body>
-        <div class="bannerImage"></div>
-        <div id="search" class="element">
-            <h3>Search By:</h3>
-            <form>
-                State:
-                <br>
+    
+    <div class="bannerImage">
+        <h3 class="search-header">Search</h3>
+        <div id="search" class="search-row">
+            <div class="search-col">
+                <h6 style="padding-bottom: 10px">State</h6>
                 <select id="state">
                     <option value="all"></option>
                     <option value="AL">Alabama</option>
@@ -87,9 +86,9 @@
                     <option value="UM">United States Minor Outlying Islands</option>
                     <option value="VI">Virgin Islands</option>
                 </select>
-                <br>
-                Designation:
-                <br>
+            </div>
+            <div class="search-col">
+                <h6 style="padding-bottom: 10px">Designation</h6>
                 <select id=desig>
                     <option value="all"></option>
                     <option value="Affiliated Area">Affiliated Area</option>
@@ -148,13 +147,16 @@
                     <option value="Wild River">Wild River</option>
                     <option value="">Other</option>
                 </select>
-                <br>
-                Keyword:
-                <br>
+            </div>
+            <div class="search-col">
+                <h6 style="padding-bottom: 10px">Keyword</h6>
                 <input id="keyword">
-            </form>
-            <button onclick="processFields()">Show Info</button>
+            </div>
         </div>
+        <button class="search-button" onclick="processFields()">Show Info</button>
+    </div>
+    <body>
+        
         <div class="lds-dual-ring" id="parkspinner" style="display: none"></div>
         <div id="info">
             <div id="park_list">

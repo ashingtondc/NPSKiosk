@@ -92,9 +92,6 @@ a {
     margin: 0px;
     text-align: center;
     padding: 20px;
-    border: 5px;
-    border-color: black;
-    border-style: solid;
 }
 
 a:hover {
@@ -103,13 +100,25 @@ a:hover {
 
 #park_list {
     padding: 10px;
-    
+    margin-top: 10px;
 }
 
 .park_node {
-    padding: 2px;
-    border-bottom-style: solid;
+    padding: 15px;
     animation: fadeEffect 1s;
+    transition: 0.3s;
+    border: 3px;
+    border-style: inset;
+    border-color: grey;
+    margin-bottom: 20px;
+}
+
+.park_node:hover {
+    cursor: pointer;
+    border: 3px;
+    border-color: rgb(181, 207, 247);
+    border-style: solid;
+    transition: 0.3s;
 }
 
 .park_name {
@@ -149,6 +158,11 @@ a:hover {
 
 }
 /* Search Styling */
+.search-div {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
 .search-row {
     display: flex;
     flex-direction: row;
@@ -169,6 +183,8 @@ select, input {
     font-size: 18px;
     background-color: rgb(231, 231, 231);
     border: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 select:focus, input:focus {
@@ -178,11 +194,8 @@ select:focus, input:focus {
 .search-button {
     font-family: 'Arial';
     font-weight: bold;
-    background: rgba(255, 255, 255, 0.5);
-    border-color: black;
-    border: 3px;
-    border-style: solid;
     color: black;
+    border:none;
     text-align: center;
     font-size: 18px;
     display: block;
@@ -190,12 +203,16 @@ select:focus, input:focus {
     height: 50px;
     width: 150px;
     transition: 0.5s;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    background: transparent;
 }
 
 .search-button:hover {
-    background: rgba(0, 0, 0, 0.5);
     color: white;
     border-color: white;
     transition: 0.5s;

@@ -12,7 +12,6 @@ window.onload = function(){
 function processFields() // Ensures at least one search criteria is selected before proceeding
 {
     //spinner.setAttribute("style", "display: block");
-    spinner.style.display = "block";
     let state = document.getElementById("state").value;
     let desig = document.getElementById("desig").value;
     let keyword = document.getElementById("keyword").value;
@@ -21,6 +20,7 @@ function processFields() // Ensures at least one search criteria is selected bef
         window.alert("Please enter at least one search criteria.")
     }else{
         getData(state, desig, keyword);
+        spinner.style.display = "block";
     }
 }
 
